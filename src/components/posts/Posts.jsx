@@ -1,13 +1,14 @@
 import Post from '../post/Post';
 import './post.css';
 
-function Posts(props) {
+function Posts({ posts }) {
     return (
         <div className='posts'>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
+            {
+                posts.map((post, _i) => (
+                    <Post key={_i} post={post} />
+                ))
+            }
         </div>
     );
 }

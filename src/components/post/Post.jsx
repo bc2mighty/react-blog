@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import './post.css';
 
-function Post(props) {
+function Post({ post }) {
     return (
         <div className='post'>
             <img 
@@ -10,14 +11,19 @@ function Post(props) {
             />
             <div className="postInfo">
                 <div className="postCats">
-                    <div className="postCat">Music</div>
-                    <div className="postCat">Life</div>
+                    {
+                        post.categories.map((cat, _i) => (
+                            <div key={_i} className="postCat">{cat}</div>
+                        ))
+                    }
                 </div>
-                <div className="postTitle">Lorem ipsum dolor sit amet</div>
+                <Link to={`/post/${post._id}`} className='link'>
+                    <span className="postTitle">{post.title}</span>
+                </Link>
                 <hr />
-                <div className="postDate">1 hour ago</div>
+                <div className="postDate">{new Date(post.createdAt).toDateString()}</div>
             </div>
-            <p className="postDesc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, exercitationem. Animi dicta fuga debitis deleniti optio praesentium, ad cupiditate unde. Consequuntur officiis similique voluptatibus illo magni labore explicabo quod dignissimos.</p>
+            <p className="postDesc">{post.body}</p>
         </div>
     );
 }

@@ -17,21 +17,40 @@ import Register from "./pages/register/Register";
 import Posts from "./components/posts/Posts";
 import Settings from "./pages/settings/Settings";
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <TopBar />,
+    children: [
+      {path: "/", exact: true, element: <Home/>},
+      {path: "/register", element: <Register/>},
+      {path: "/login", element: <Login/>},
+      {path: "/write", element: <Write/>},
+      {path: "/settings", element: <Settings/>},
+      {path: "/posts", element: <Posts/>},
+      {path: "/post/:id", element: <Single/>},
+    ]
+  },
+])
+
 function App() {
+  const user = false;
+
   return (
     <div className="App">
-      <TopBar/>
+      <RouterProvider router={router} />
+      {/* <TopBar/>
       <Router>
         <Routes>
           <Route exact path="/" element={<Home/>}/>
           <Route path="/posts" element={<Posts/>}/>
           <Route path="/post/:id" element={<Single/>}/>
-          <Route path="/write" element={<Write/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/register" element={<Register/>}/>
-          <Route path="/settings" element={<Settings/>}/>
+          <Route path="/write" element={ user ? <Home/> : <Write/>}/>
+          <Route path="/login" element={ user ? <Home/> : <Login/>}/>
+          <Route path="/register" element={ user ? <Home/> : <Register/>}/>
+          <Route path="/settings" element={ user ? <Settings/> : <Register/>}/>
         </Routes>
-      </Router>
+      </Router> */}
     </div>
   );
 }

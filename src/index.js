@@ -4,9 +4,7 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
     <App />
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
@@ -28,35 +26,4 @@ import Setting from './pages/settings/Settings';
 import Write from './pages/write/Write';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Home/>
-  },
-  {
-    path: 'register',
-    element: <Register/>
-  },
-  {
-    path: 'login',
-    element: <Login/>
-  },
-  {
-    path: 'write',
-    element: <Write/>
-  },
-  {
-    path: 'settings',
-    element: <Setting/>
-  },
-  {
-    path: 'posts',
-    element: <Posts/>
-  },
-  {
-    path: 'posts/:id',
-    element: <Post/>
-  },
-])
 */
