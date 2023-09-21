@@ -16,25 +16,28 @@ import Register from "./pages/register/Register";
 
 import Posts from "./components/posts/Posts";
 import Settings from "./pages/settings/Settings";
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <TopBar />,
-    children: [
-      {path: "/", exact: true, element: <Home/>},
-      {path: "/register", element: <Register/>},
-      {path: "/login", element: <Login/>},
-      {path: "/write", element: <Write/>},
-      {path: "/settings", element: <Settings/>},
-      {path: "/posts", element: <Posts/>},
-      {path: "/post/:id", element: <Single/>},
-    ]
-  },
-])
+import { useContext } from 'react';
+import { Context } from './context/Contexts';
 
 function App() {
-  const user = false;
+  const {user} = useContext(Context);
+  console.log(user);
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <TopBar />,
+      children: [
+        {path: "/", exact: true, element: <Home/>},
+        {path: "/register", element: user ? <Home/> : <Register/>},
+        {path: "/login", element: user ? <Home/> : <Login/>},
+        {path: "/write", element: user ? <Home/> : <Write/>},
+        {path: "/settings", element: user ? <Home/> : <Settings/>},
+        {path: "/posts", element: <Posts/>},
+        {path: "/post/:id", element: <Single/>},
+      ]
+    },
+  ])
 
   return (
     <div className="App">

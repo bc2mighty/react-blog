@@ -31,8 +31,8 @@ function Sidebar(props) {
                 <ul className="sidebarList">
                     {
                         cats.map((cat, _i) => (
-                            <Link className='link' to={`/?catName=${cat.name}`}>
-                                <li key={_i} className="sidebarListItem">{cat.name}</li>
+                            <Link key={_i} className='link' to={`/?catName=${cat.name}`}>
+                                <li className="sidebarListItem">{cat.name}</li>
                             </Link>
                         ))
                     }
