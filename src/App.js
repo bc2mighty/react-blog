@@ -21,7 +21,6 @@ import { Context } from './context/Contexts';
 
 function App() {
   const {user} = useContext(Context);
-  console.log(user);
 
   const router = createBrowserRouter([
     {
@@ -29,10 +28,10 @@ function App() {
       element: <TopBar />,
       children: [
         {path: "/", exact: true, element: <Home/>},
-        {path: "/register", element: user ? <Home/> : <Register/>},
-        {path: "/login", element: user ? <Home/> : <Login/>},
-        {path: "/write", element: user ? <Home/> : <Write/>},
-        {path: "/settings", element: user ? <Home/> : <Settings/>},
+        {path: "/register", element: <Register/>},
+        {path: "/login", element: <Login/>},
+        {path: "/write", element: <Write/>},
+        {path: "/settings", element: <Settings/>},
         {path: "/posts", element: <Posts/>},
         {path: "/post/:id", element: <Single/>},
       ]
@@ -48,9 +47,9 @@ function App() {
           <Route exact path="/" element={<Home/>}/>
           <Route path="/posts" element={<Posts/>}/>
           <Route path="/post/:id" element={<Single/>}/>
-          <Route path="/write" element={ user ? <Home/> : <Write/>}/>
-          <Route path="/login" element={ user ? <Home/> : <Login/>}/>
-          <Route path="/register" element={ user ? <Home/> : <Register/>}/>
+          <Route path="/write" element={ <Write/>}/>
+          <Route path="/login" element={ <Login/>}/>
+          <Route path="/register" element={ <Register/>}/>
           <Route path="/settings" element={ user ? <Settings/> : <Register/>}/>
         </Routes>
       </Router> */}

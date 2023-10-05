@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
 import './register.css';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { Context } from '../../context/Contexts';
 
 function Register(props) {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false);
+
+    const {user} = useContext(Context)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -20,10 +23,13 @@ function Register(props) {
             })
             if(res.data) window.location.replace('/login')
         } catch(err) {
-            console.log(err);
             setError(true);
         }
     }
+
+    useEffect(() => {
+        if(user) window.location.replace('/')
+    }, [user])
     
     return (
         <div className='register'>

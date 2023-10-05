@@ -4,7 +4,11 @@ import { useContext } from 'react';
 import { Context } from '../../context/Contexts';
 
 function TopBar(props) {
-    const {user} = useContext(Context);
+    const {user, dispatch} = useContext(Context);
+    const handleLogout = () => {
+        dispatch({type: 'LOGOUT'})
+    }
+
     return (
         <>
             <div className='top'>
@@ -28,7 +32,9 @@ function TopBar(props) {
                         <li className="topListItem">
                             <Link className='link' to='write'>WRITE</Link>
                         </li>
-                        <li className="topListItem">LOGOUT</li>
+                        {user && (
+                            <li className="topListItem" onClick={handleLogout}>LOGOUT</li>
+                        )}
                     </ul>
                 </div>
                 <div className="topRight">
@@ -36,7 +42,7 @@ function TopBar(props) {
                         user ? (
                             <img 
                             className='topImg'
-                            src="https://images.pexels.com/photos/1167355/pexels-photo-1167355.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                            src={user.profilePic} 
                             alt="" />
                         ) : (
                             <ul className="">
